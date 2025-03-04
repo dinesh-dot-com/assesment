@@ -10,12 +10,24 @@ class PortfolioScreen extends StatelessWidget {
     Stock(symbol: 'TSLA', name: 'Tesla Inc.', price: 700.0, carbonFootprint: 5.0, esgScore: 90.0),
   ]);
 
+  final VoidCallback toggleTheme;
+
+  PortfolioScreen({required this.toggleTheme});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Portfolio'),
         centerTitle: true,
+        actions: [
+          Switch(
+            value: Theme.of(context).brightness == Brightness.dark,
+            onChanged: (value) {
+              toggleTheme();
+            },
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
